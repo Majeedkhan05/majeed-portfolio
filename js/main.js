@@ -1,5 +1,5 @@
 import { initScene } from './scene.js';
-import { initGame }  from './game.js';
+import { initVoxel } from './voxel.js';
 import { initGallery } from './gallery.js';
 
 /* ── boot sequence ─────────────────────────────────────────────────────── */
@@ -136,7 +136,7 @@ setInterval(() => {
 
   const CMDS = [
     { label:'Go to work',            hint:'01',     run:() => go('#work') },
-    { label:'Play Glyph Hunter',     hint:'02',     run:() => { go('#play'); setTimeout(() => document.getElementById('gStart')?.click(), 700); } },
+    { label:'Explore Block World',   hint:'02',     run:() => go('#play') },
     { label:'Google I/O 2026',       hint:'03',     run:() => go('#io') },
     { label:'Watch the Robby Stein interview', hint:'04', run:() => { go('#interview'); setTimeout(()=>document.getElementById('interviewVideo')?.play().catch(()=>{}), 900); } },
     { label:'About me',              hint:'05',     run:() => go('#about') },
@@ -218,6 +218,25 @@ const SHOTS = [
   };
 })();
 
+/* ── block world card ──────────────────────────────────────────────────── */
+const opened = new Set();
+function openBuild(b) {
+  document.getElementById('wKicker').textContent = b.kicker;
+  document.getElementById('wTitle').textContent  = b.title;
+  document.getElementById('wBody').textContent   = b.body;
+  document.getElementById('worldCard').classList.add('open');
+  opened.add(b.id);
+  document.getElementById('worldCount').textContent =
+    `6 BUILDS \u00b7 ${opened.size} OPENED`;
+  if (opened.size === 6) setTimeout(() => {
+    const t = document.getElementById('toast');
+    t.textContent = 'All six opened. Now you know the whole story.';
+    t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3600);
+  }, 500);
+}
+document.getElementById('worldClose').addEventListener('click',
+  () => document.getElementById('worldCard').classList.remove('open'));
+
 /* ── init ──────────────────────────────────────────────────────────────── */
 const heroVideo = document.getElementById('heroVideo');
 // Muted+inline autoplay is usually allowed, but some engines still gate it behind
@@ -229,6 +248,6 @@ kickVideo();
 heroVideo.addEventListener('canplay', kickVideo);
 
 initScene(document.getElementById('bg'), heroVideo);
-initGame(document.getElementById('game'));
+initVoxel(document.getElementById('worldCanvas'), openBuild);
 initGallery(document.getElementById('galleryCanvas'), SHOTS, s => window.__openShot(s));
 boot();

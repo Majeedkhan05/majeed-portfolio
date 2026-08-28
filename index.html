@@ -142,39 +142,33 @@
   </div>
 </section>
 
-<!-- ══ GAME ══ -->
+<!-- BLOCK WORLD -->
 <section class="section section-game" id="play">
   <header class="section-head reveal">
     <span class="section-idx">02</span>
-    <h2>Decode the Indus script</h2>
+    <h2>Walk around my head</h2>
     <p>
-      The Indus Valley script has never been deciphered — roughly 4,000 known
-      inscriptions, no bilingual key, no agreed reading. My research assistant
-      indexes them. Here, you try. Match the target glyph before the clock runs out.
+      Six builds, one per chapter. Drag to orbit the world, click any structure
+      to open it. It is the fastest way to get to know me &mdash; and yes, it is
+      blocks, because that is the world most of us grew up building in.
     </p>
   </header>
 
-  <div class="game reveal" id="game">
-    <div class="game-hud">
-      <div class="hud-item"><span>TARGET</span><canvas class="hud-glyph" id="hudGlyph" width="120" height="120"></canvas></div>
-      <div class="hud-item"><span>SCORE</span><b id="gScore">0</b></div>
-      <div class="hud-item"><span>COMBO</span><b id="gCombo">×1</b></div>
-      <div class="hud-item"><span>TIME</span><b id="gTime">30</b></div>
+  <div class="world reveal" id="world">
+    <div class="world-hud">
+      <span>DRAG TO ORBIT</span>
+      <span id="worldCount">6 BUILDS &middot; 0 OPENED</span>
     </div>
-    <canvas id="gameCanvas"></canvas>
-    <div class="game-overlay" id="gameOverlay">
-      <h3 id="gTitle">GLYPH HUNTER</h3>
-      <p id="gMsg">Click the floating glyph that matches the target. Chain them for combo.</p>
-      <button class="btn btn-primary" id="gStart">Start</button>
-      <p class="game-best">Best: <b id="gBest">0</b></p>
-    </div>
+    <canvas id="worldCanvas"></canvas>
+    <aside class="world-card" id="worldCard">
+      <button class="world-close" id="worldClose" aria-label="Close">&times;</button>
+      <span class="world-kicker" id="wKicker"></span>
+      <h3 id="wTitle"></h3>
+      <p id="wBody"></p>
+    </aside>
   </div>
-  <p class="game-foot reveal">
-    Glyphs are traced from real Indus seal inscriptions. Nobody knows what they say —
-    which is precisely why <a href="https://github.com/Majeedkhan05/indus-valley-ai" target="_blank" rel="noopener">I built a retrieval engine for them</a>.
-  </p>
+  <p class="world-foot reveal">Every build is a real thing that happened. Open all six and the world lights up.</p>
 </section>
-
 
 <!-- ══ MOUNTAIN VIEW ══ -->
 <section class="section" id="io">

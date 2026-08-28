@@ -10,7 +10,7 @@ export function initScene(canvas, videoEl) {
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
 
   const scene  = new THREE.Scene();
-  scene.fog    = new THREE.FogExp2(0x05060a, 0.05);
+  scene.fog    = new THREE.FogExp2(0xd9d9d6, 0.048);
 
   // iridescent fluid, drawn first into its own ortho pass
   const bgScene = new THREE.Scene();
@@ -25,7 +25,7 @@ export function initScene(canvas, videoEl) {
   /* ── point cloud ──────────────────────────────────────────────────────── */
   const COUNT = 2400;
   const pos = new Float32Array(COUNT*3), col = new Float32Array(COUNT*3), seed = new Float32Array(COUNT);
-  const palette = [new THREE.Color(0x38e8c8), new THREE.Color(0x7c8cff), new THREE.Color(0xf0a848)];
+  const palette = [new THREE.Color(0x0a8f7d), new THREE.Color(0x3f43b5), new THREE.Color(0xa8621a)];
   for (let i=0;i<COUNT;i++){
     const r = 8+Math.random()*10, th = Math.random()*Math.PI*2, ph = Math.acos(2*Math.random()-1);
     pos[i*3]=r*Math.sin(ph)*Math.cos(th); pos[i*3+1]=r*Math.sin(ph)*Math.sin(th)*.62; pos[i*3+2]=r*Math.cos(ph);
@@ -37,8 +37,8 @@ export function initScene(canvas, videoEl) {
   geo.setAttribute('color', new THREE.BufferAttribute(col,3));
   const base = pos.slice();
   const points = new THREE.Points(geo, new THREE.PointsMaterial({
-    size:.07, vertexColors:true, transparent:true, opacity:.85,
-    blending:THREE.AdditiveBlending, depthWrite:false, sizeAttenuation:true }));
+    size:.062, vertexColors:true, transparent:true, opacity:.62,
+    blending:THREE.NormalBlending, depthWrite:false, sizeAttenuation:true }));
   scene.add(points);
 
   /* ── video slats ──────────────────────────────────────────────────────── */
@@ -66,7 +66,7 @@ export function initScene(canvas, videoEl) {
 
       const m = new THREE.Mesh(
         new THREE.PlaneGeometry(sw * .93, PANEL_H),
-        new THREE.MeshBasicMaterial({ map:t, transparent:true, opacity:.72, side:THREE.DoubleSide })
+        new THREE.MeshBasicMaterial({ map:t, transparent:true, opacity:.94, side:THREE.DoubleSide })
       );
       m.position.x = -PANEL_W/2 + sw*(i+.5);
       slatGroup.add(m);
@@ -75,7 +75,7 @@ export function initScene(canvas, videoEl) {
       // thin emissive edge so the slats read as physical objects
       const edge = new THREE.Mesh(
         new THREE.PlaneGeometry(.012, PANEL_H),
-        new THREE.MeshBasicMaterial({ color:0x38e8c8, transparent:true, opacity:.32, blending:THREE.AdditiveBlending, depthWrite:false })
+        new THREE.MeshBasicMaterial({ color:0x0a8f7d, transparent:true, opacity:.30, blending:THREE.NormalBlending, depthWrite:false })
       );
       edge.position.set(m.position.x - sw*.47, 0, .02);
       slatGroup.add(edge);
@@ -84,7 +84,7 @@ export function initScene(canvas, videoEl) {
     // soft glow behind the panel
     const glow = new THREE.Mesh(
       new THREE.PlaneGeometry(PANEL_W*1.5, PANEL_H*1.45),
-      new THREE.MeshBasicMaterial({ color:0x38e8c8, transparent:true, opacity:.055, blending:THREE.AdditiveBlending, depthWrite:false })
+      new THREE.MeshBasicMaterial({ color:0xffffff, transparent:true, opacity:.10, blending:THREE.NormalBlending, depthWrite:false })
     );
     glow.position.z = -.6; slatGroup.add(glow);
   }
@@ -135,7 +135,7 @@ export function initScene(canvas, videoEl) {
       const ph = t*1.15 - i*.28;
       slats[i].rotation.y = Math.sin(ph)*.42 + mouse.x*.16;
       slats[i].position.z = Math.cos(ph)*.32;
-      slats[i].material.opacity = (.44 + .34*Math.abs(Math.cos(slats[i].rotation.y)));
+      slats[i].material.opacity = (.70 + .28*Math.abs(Math.cos(slats[i].rotation.y)));
     }
     slatGroup.rotation.y = mouse.x*.1;
     slatGroup.rotation.x = -mouse.y*.06;
