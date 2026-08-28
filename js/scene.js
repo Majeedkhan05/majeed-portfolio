@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { makeBackdrop } from './backdrop.js';
 
 // Hero: a drifting point-cloud, plus the interview footage shattered across a
 // bank of vertical slats. Each slat samples its own vertical slice of the video
@@ -10,6 +11,12 @@ export function initScene(canvas, videoEl) {
 
   const scene  = new THREE.Scene();
   scene.fog    = new THREE.FogExp2(0x05060a, 0.05);
+
+  // iridescent fluid, drawn first into its own ortho pass
+  const bgScene = new THREE.Scene();
+  const bgCam   = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  const { mesh: bgMesh, mat: bgMat } = makeBackdrop();
+  bgScene.add(bgMesh);
   const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
   camera.position.z = 15;
 
@@ -94,6 +101,7 @@ export function initScene(canvas, videoEl) {
   function resize(){
     renderer.setSize(innerWidth, innerHeight, false);
     camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix();
+    bgMat.uniforms.uRes.value.set(innerWidth, innerHeight);
     // pull the panel in on narrow screens so it stays inside frame
     const s = Math.min(1, innerWidth/1100);
     slatGroup.scale.setScalar(.58 + s*.42);
@@ -138,10 +146,21 @@ export function initScene(canvas, videoEl) {
     camera.position.y += (-mouse.y*1.0 - camera.position.y)*.045;
     slatGroup.position.y = -p*3;
     camera.lookAt(0,0,0);
+
+    bgMat.uniforms.uTime.value = t;
+    bgMat.uniforms.uMouse.value.set(mouse.x, -mouse.y);
+    // fade the fluid back as the reader leaves the hero so text sections stay calm
+    bgMat.uniforms.uIntensity.value = 1.0 - Math.min(sy / (innerHeight * 1.6), 1) * 0.62;
+
+    renderer.autoClear = false;
+    renderer.clear();
+    renderer.render(bgScene, bgCam);
+    renderer.clearDepth();
     renderer.render(scene, camera);
   }
 
-  if (!reduced) frame(); else renderer.render(scene, camera);
+  if (!reduced) frame();
+  else { renderer.autoClear = false; renderer.clear(); renderer.render(bgScene, bgCam); renderer.clearDepth(); renderer.render(scene, camera); }
 
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) { cancelAnimationFrame(raf); videoEl?.pause(); }
