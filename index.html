@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mohammed Majeed Khan — AI Engineer</title>
+<meta name="description" content="AI engineer working on agentic systems, retrieval, and on-device inference. Google I/O 2026 delegate. Rank #1 in India, Google Cloud GenAI Exchange.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ══ CUSTOM CURSOR ══ -->
+<div class="cursor" id="cursor"><div class="cursor-dot"></div><div class="cursor-ring"></div></div>
+
+<!-- ══ BOOT SEQUENCE ══ -->
+<div class="boot" id="boot">
+  <div class="boot-inner">
+    <pre class="boot-log" id="bootLog"></pre>
+    <div class="boot-bar"><div class="boot-bar-fill" id="bootFill"></div></div>
+  </div>
+  <button class="boot-skip" id="bootSkip">CLICK ANYWHERE TO SKIP</button>
+</div>
+
+<!-- ══ WEBGL CANVAS ══ -->
+<canvas id="bg"></canvas>
+<div class="grain"></div>
+<div class="scanlines"></div>
+
+<!-- ══ NAV ══ -->
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-logo">MK<span class="blink">_</span></a>
+  <div class="nav-links">
+    <a href="#work">work</a>
+    <a href="#play">play</a>
+    <a href="#about">about</a>
+    <a href="#contact">contact</a>
+  </div>
+  <button class="nav-cmd" id="cmdBtn" aria-label="Open command palette"><kbd>⌘</kbd><kbd>K</kbd></button>
+</nav>
+
+<main>
+<!-- ══ HERO ══ -->
+<section class="hero" id="top">
+  <div class="hero-content">
+    <div class="hero-tag reveal">
+      <span class="pulse"></span>
+      1 of 9 national delegates · Google I/O 2026 · Mountain View
+    </div>
+    <h1 class="hero-title">
+      <span class="line reveal"><span>MOHAMMED</span></span>
+      <span class="line reveal"><span>MAJEED KHAN</span></span>
+    </h1>
+    <p class="hero-sub reveal">
+      I build <em>agentic systems</em>, <em>retrieval engines</em>, and models
+      small enough to run where the data already lives.
+    </p>
+    <div class="hero-stats reveal">
+      <div class="stat"><b data-count="1">0</b><span>of 9 delegates<br>at Google HQ</span></div>
+      <div class="stat"><b data-count="208000" data-suffix="+">0</b><span>developers ranked<br>behind him, GenAI Exchange</span></div>
+      <div class="stat"><b data-count="200" data-prefix="&lt;" data-suffix="ms">0</b><span>edge inference<br>zero cloud egress</span></div>
+    </div>
+    <div class="hero-cta reveal">
+      <a href="#work" class="btn btn-primary">See the work</a>
+      <a href="#play" class="btn btn-ghost">Play something →</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><span></span>scroll</div>
+</section>
+
+<!-- ══ MARQUEE ══ -->
+<div class="marquee"><div class="marquee-track" id="marqueeTrack"></div></div>
+
+<!-- ══ WORK ══ -->
+<section class="section" id="work">
+  <header class="section-head reveal">
+    <span class="section-idx">01</span>
+    <h2>Things I've shipped</h2>
+    <p>Every number below is reproducible. Clone the repo and run the suite.</p>
+  </header>
+
+  <div class="projects">
+    <article class="project reveal" data-accent="#38e8c8">
+      <div class="project-meta"><span class="project-num">001</span><span class="project-year">2026</span></div>
+      <h3>True North</h3>
+      <p class="project-role">Bilingual AI back-office · Canadian insurance</p>
+      <p class="project-desc">
+        Email lands, a PDF policy gets parsed, confidence-scored, validated against
+        Quebec regulation, and turned into a bilingual draft the broker approves in
+        one click. Multi-tenant, billed, and audited.
+      </p>
+      <ul class="project-metrics">
+        <li><b>98.4%</b> extraction accuracy, FR/EN binders</li>
+        <li><b>58/58</b> end-to-end checks, 0 failures</li>
+        <li><b>0</b> PII leakage · AMF · Loi 25 · PIPEDA</li>
+      </ul>
+      <div class="project-stack"><span>FastAPI</span><span>Gemini</span><span>Supabase RLS</span><span>Stripe</span><span>n8n</span><span>Docker</span></div>
+      <a class="project-link" href="https://github.com/Majeedkhan05/true-north" target="_blank" rel="noopener">Read the code →</a>
+    </article>
+
+    <article class="project reveal" data-accent="#f0a848">
+      <div class="project-meta"><span class="project-num">002</span><span class="project-year">2026</span></div>
+      <h3>Indus Valley AI</h3>
+      <p class="project-role">Private multimodal RAG · archaeology research</p>
+      <p class="project-desc">
+        A research assistant for a 4,000-year-old undeciphered script — running
+        entirely on one machine. No cloud, no egress, no API bill. It reads the
+        papers, matches the seals, and cites what it found.
+      </p>
+      <ul class="project-metrics">
+        <li><b>1,500+</b> academic chunks, FAISS + BGE</li>
+        <li><b>&lt;200ms</b> inference, Phi-3 Mini + LoRA</li>
+        <li><b>IVA-80</b> benchmark · red-team analysis</li>
+      </ul>
+      <div class="project-stack"><span>PyTorch</span><span>FAISS</span><span>CLIP</span><span>Ollama</span><span>LoRA</span></div>
+      <a class="project-link" href="https://github.com/Majeedkhan05/indus-valley-ai" target="_blank" rel="noopener">Read the code →</a>
+      <p class="project-note">Ships with a research manuscript — an unpublished preprint, prepared for ICLR.</p>
+    </article>
+
+    <article class="project reveal" data-accent="#7c8cff">
+      <div class="project-meta"><span class="project-num">003</span><span class="project-year">2025</span></div>
+      <h3>Paper Discovery Engine</h3>
+      <p class="project-role">Multimodal RAG over dense academic PDFs</p>
+      <p class="project-desc">
+        Figures and tables are where the findings actually live, and most retrieval
+        systems throw them away. This one parses them, indexes them, and searches
+        across them.
+      </p>
+      <ul class="project-metrics">
+        <li><b>~80%</b> reduction in literature search latency</li>
+        <li><b>Dense</b> semantic retrieval, Vertex AI Vector Search</li>
+      </ul>
+      <div class="project-stack"><span>Vertex AI</span><span>Gemini</span><span>GCP</span><span>Python</span></div>
+    </article>
+  </div>
+</section>
+
+<!-- ══ GAME ══ -->
+<section class="section section-game" id="play">
+  <header class="section-head reveal">
+    <span class="section-idx">02</span>
+    <h2>Decode the Indus script</h2>
+    <p>
+      The Indus Valley script has never been deciphered — roughly 4,000 known
+      inscriptions, no bilingual key, no agreed reading. My research assistant
+      indexes them. Here, you try. Match the target glyph before the clock runs out.
+    </p>
+  </header>
+
+  <div class="game reveal" id="game">
+    <div class="game-hud">
+      <div class="hud-item"><span>TARGET</span><canvas class="hud-glyph" id="hudGlyph" width="120" height="120"></canvas></div>
+      <div class="hud-item"><span>SCORE</span><b id="gScore">0</b></div>
+      <div class="hud-item"><span>COMBO</span><b id="gCombo">×1</b></div>
+      <div class="hud-item"><span>TIME</span><b id="gTime">30</b></div>
+    </div>
+    <canvas id="gameCanvas"></canvas>
+    <div class="game-overlay" id="gameOverlay">
+      <h3 id="gTitle">GLYPH HUNTER</h3>
+      <p id="gMsg">Click the floating glyph that matches the target. Chain them for combo.</p>
+      <button class="btn btn-primary" id="gStart">Start</button>
+      <p class="game-best">Best: <b id="gBest">0</b></p>
+    </div>
+  </div>
+  <p class="game-foot reveal">
+    Glyphs are traced from real Indus seal inscriptions. Nobody knows what they say —
+    which is precisely why <a href="https://github.com/Majeedkhan05/indus-valley-ai" target="_blank" rel="noopener">I built a retrieval engine for them</a>.
+  </p>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section class="section" id="about">
+  <header class="section-head reveal">
+    <span class="section-idx">03</span>
+    <h2>Who's behind this</h2>
+  </header>
+  <div class="about-grid">
+    <div class="about-body reveal">
+      <p class="lede">
+        I'm a CS student in Hyderabad who kept building things that were too
+        finished to be called student projects.
+      </p>
+      <p>
+        In 2026 Google flew me to Mountain View as one of nine delegates chosen to
+        represent Indian student developers at I/O. While I was there I interviewed
+        Robby Stein, VP of Product for Google Search, about Gemini's integration
+        into search — one of two people from India selected. The conversation ran
+        across Google Official, Google for Developers, and Google India.
+      </p>
+      <p>
+        Before that I placed <strong>first in India out of 208,000+ developers</strong>
+        in the Google Cloud GenAI Exchange, for Vertex AI and LLM implementation.
+      </p>
+      <p>
+        At home I founded the AI Hub at Mahindra University — 100+ active members,
+        a hackathon that pulled 1,000+ participants, and a lot of code review. I've
+        run Vertex AI and multimodal RAG workshops for over a thousand developers.
+      </p>
+      <p class="quiet">
+        Currently: Integrated M.Tech in CS, Mahindra University, graduating 2028.
+        Looking for remote AI engineering internships — the kind where I ship.
+      </p>
+    </div>
+    <aside class="about-side reveal">
+      <div class="timeline">
+        <div class="tl"><b>2026</b><span>Google I/O delegate · Mountain View</span></div>
+        <div class="tl"><b>2026</b><span>Rank #1 in India · GenAI Exchange</span></div>
+        <div class="tl"><b>2025</b><span>Founder &amp; President · AI Hub</span></div>
+        <div class="tl"><b>2025</b><span>Google Student Ambassador</span></div>
+        <div class="tl"><b>2025</b><span>₹800K sponsorships · Aeon Tech Fest</span></div>
+        <div class="tl"><b>2023</b><span>Integrated M.Tech begins</span></div>
+      </div>
+      <div class="skills">
+        <h4>Toolkit</h4>
+        <div class="skill-tags">
+          <span>Python</span><span>C++</span><span>TypeScript</span><span>PyTorch</span>
+          <span>LangChain</span><span>FAISS</span><span>Gemini API</span><span>Vertex AI</span>
+          <span>Ollama</span><span>GCP</span><span>Docker</span><span>FastAPI</span><span>Supabase</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section class="section section-contact" id="contact">
+  <div class="contact-inner reveal">
+    <span class="section-idx">04</span>
+    <h2>Let's build something</h2>
+    <p>Open to remote AI engineering internships, research collaborations, and interesting problems.</p>
+    <a class="mailto" href="mailto:majeedkhan2005.cc@gmail.com">majeedkhan2005.cc@gmail.com</a>
+    <div class="contact-links">
+      <a href="https://github.com/Majeedkhan05" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/majeed-khan" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+  <footer class="footer">
+    <span>Hyderabad, India · <span id="clock"></span> IST</span>
+    <span>Built by hand. Press <kbd>⌘</kbd><kbd>K</kbd>.</span>
+  </footer>
+</section>
+</main>
+
+<!-- ══ COMMAND PALETTE ══ -->
+<div class="palette" id="palette">
+  <div class="palette-box">
+    <input id="paletteInput" placeholder="Type a command…" autocomplete="off" spellcheck="false">
+    <div class="palette-results" id="paletteResults"></div>
+    <div class="palette-foot"><kbd>↑</kbd><kbd>↓</kbd> navigate · <kbd>↵</kbd> select · <kbd>esc</kbd> close</div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.js" } }
+</script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
