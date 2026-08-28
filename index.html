@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -25,6 +26,7 @@
 </div>
 
 <!-- ══ WEBGL CANVAS ══ -->
+<video id="heroVideo" src="assets/video/hero-loop.mp4" muted loop playsinline preload="auto" aria-hidden="true"></video>
 <canvas id="bg"></canvas>
 <div class="grain"></div>
 <div class="scanlines"></div>
@@ -34,7 +36,9 @@
   <a href="#top" class="nav-logo">MK<span class="blink">_</span></a>
   <div class="nav-links">
     <a href="#work">work</a>
+    <a href="#io">i/o</a>
     <a href="#play">play</a>
+    <a href="#interview">interview</a>
     <a href="#about">about</a>
     <a href="#contact">contact</a>
   </div>
@@ -170,10 +174,59 @@
   </p>
 </section>
 
+
+<!-- ══ MOUNTAIN VIEW ══ -->
+<section class="section" id="io">
+  <header class="section-head reveal">
+    <span class="section-idx">03</span>
+    <h2>Mountain View, 2026</h2>
+    <p>Google picked nine student ambassadors out of every campus in India and flew them to headquarters. Here is the paper trail.</p>
+  </header>
+
+  <div class="proof">
+    <figure class="proof-card proof-hero reveal">
+      <img src="assets/img/gemini-nine.webp" alt="Google Gemini graphic: Boarding Google I/O, Destination USA — recognising 9 outstanding student ambassadors, with Majeed Khan listed first" loading="lazy">
+      <figcaption><b>The nine.</b> Google Gemini's announcement — “recognising 9 outstanding student ambassadors on a global stage.” First name on the list.</figcaption>
+    </figure>
+    <figure class="proof-card reveal">
+      <img src="assets/img/feature-google-official.webp" alt="Google's official account featuring Majeed Khan speaking, captioned Mahindra University, India" loading="lazy">
+      <figcaption><b>@Google · 42.3M followers.</b> “This generation is going to be the AI-first generation, where you are AI native.”</figcaption>
+    </figure>
+    <figure class="proof-card reveal">
+      <img src="assets/img/feature-googleindia.webp" alt="Google India post: Google Student Ambassadors assemble at Google I/O 2026" loading="lazy">
+      <figcaption><b>@GoogleIndia.</b> “Google Student Ambassadors really did that.”</figcaption>
+    </figure>
+  </div>
+
+  <div class="gallery-wrap reveal">
+    <div class="gallery-label"><span>DRAG TO ROTATE</span><span>CLICK TO OPEN</span></div>
+    <canvas id="galleryCanvas"></canvas>
+  </div>
+</section>
+
+<!-- ══ INTERVIEW ══ -->
+<section class="section section-interview" id="interview">
+  <header class="section-head reveal">
+    <span class="section-idx">04</span>
+    <h2>I interviewed Google's VP of Product for Search</h2>
+    <p>Robby Stein, on how Gemini changes what a search interface even is. One of two people from India selected to sit down with him.</p>
+  </header>
+  <div class="interview reveal">
+    <div class="interview-video">
+      <video id="interviewVideo" src="assets/video/interview.mp4" poster="assets/img/interview-poster.webp" controls playsinline preload="none"></video>
+    </div>
+    <aside class="interview-side">
+      <img src="assets/img/interview-setup.webp" alt="Majeed Khan and Robby Stein seated for the interview at Google" loading="lazy">
+      <blockquote>“User interfaces that are stateful.”<cite>Robby Stein — VP of Product, Google Search</cite></blockquote>
+      <p class="interview-note">Filmed at Google HQ for <b>#TeamGemini · Google I/O Student Insider</b>. Ran across Google Official, Google for Developers, and Google India.</p>
+    </aside>
+  </div>
+</section>
+
 <!-- ══ ABOUT ══ -->
 <section class="section" id="about">
   <header class="section-head reveal">
-    <span class="section-idx">03</span>
+    <span class="section-idx">05</span>
     <h2>Who's behind this</h2>
   </header>
   <div class="about-grid">
@@ -227,7 +280,7 @@
 <!-- ══ CONTACT ══ -->
 <section class="section section-contact" id="contact">
   <div class="contact-inner reveal">
-    <span class="section-idx">04</span>
+    <span class="section-idx">06</span>
     <h2>Let's build something</h2>
     <p>Open to remote AI engineering internships, research collaborations, and interesting problems.</p>
     <a class="mailto" href="mailto:majeedkhan2005.cc@gmail.com">majeedkhan2005.cc@gmail.com</a>
@@ -250,6 +303,11 @@
     <div class="palette-results" id="paletteResults"></div>
     <div class="palette-foot"><kbd>↑</kbd><kbd>↓</kbd> navigate · <kbd>↵</kbd> select · <kbd>esc</kbd> close</div>
   </div>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
 </div>
 
 <div class="toast" id="toast"></div>

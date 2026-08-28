@@ -1,5 +1,6 @@
 import { initScene } from './scene.js';
 import { initGame }  from './game.js';
+import { initGallery } from './gallery.js';
 
 /* ── boot sequence ─────────────────────────────────────────────────────── */
 const BOOT = [
@@ -136,7 +137,9 @@ setInterval(() => {
   const CMDS = [
     { label:'Go to work',            hint:'01',     run:() => go('#work') },
     { label:'Play Glyph Hunter',     hint:'02',     run:() => { go('#play'); setTimeout(() => document.getElementById('gStart')?.click(), 700); } },
-    { label:'About me',              hint:'03',     run:() => go('#about') },
+    { label:'Google I/O 2026',       hint:'03',     run:() => go('#io') },
+    { label:'Watch the Robby Stein interview', hint:'04', run:() => { go('#interview'); setTimeout(()=>document.getElementById('interviewVideo')?.play().catch(()=>{}), 900); } },
+    { label:'About me',              hint:'05',     run:() => go('#about') },
     { label:'Contact',               hint:'04',     run:() => go('#contact') },
     { label:'Email me',              hint:'mailto', run:() => location.href = 'mailto:majeedkhan2005.cc@gmail.com' },
     { label:'Copy email address',    hint:'copy',   run:() => navigator.clipboard?.writeText('majeedkhan2005.cc@gmail.com').then(() => say('Email copied ✓')) },
@@ -189,7 +192,43 @@ setInterval(() => {
   });
 })();
 
+/* ── photo gallery + lightbox ──────────────────────────────────────────── */
+const SHOTS = [
+  { src:'assets/img/google-bridge-thumb.webp',      full:'assets/img/google-bridge.webp',      cap:'Google HQ, Mountain View — May 2026' },
+  { src:'assets/img/gemini-nine-thumb.webp',        full:'assets/img/gemini-nine.webp',        cap:'Google Gemini — the nine ambassadors flown to I/O' },
+  { src:'assets/img/interview-setup-thumb.webp',    full:'assets/img/interview-setup.webp',    cap:'Sitting down with Robby Stein, VP of Product, Google Search' },
+  { src:'assets/img/badge-thumb.webp',              full:'assets/img/badge.webp',              cap:'I/O credential — Mahindra University' },
+  { src:'assets/img/io-sandbox-thumb.webp',         full:'assets/img/io-sandbox.webp',         cap:'The AI Sandbox, Shoreline Amphitheatre' },
+  { src:'assets/img/ambassadors-group-thumb.webp',  full:'assets/img/ambassadors-group.webp',  cap:'Student ambassadors, Google campus' },
+  { src:'assets/img/io-booth-thumb.webp',           full:'assets/img/io-booth.webp',           cap:'On the floor at I/O 2026' },
+  { src:'assets/img/feature-gfd-thumb.webp',        full:'assets/img/feature-gfd.webp',        cap:'Featured by Google for Developers' },
+];
+
+(function lightbox() {
+  const box = document.getElementById('lightbox');
+  const img = document.getElementById('lbImg');
+  const cap = document.getElementById('lbCap');
+  const close = () => { box.classList.remove('open'); document.body.style.overflow=''; };
+  document.getElementById('lbClose').addEventListener('click', close);
+  box.addEventListener('click', e => { if (e.target === box) close(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  window.__openShot = shot => {
+    img.src = shot.full; img.alt = shot.cap; cap.textContent = shot.cap;
+    box.classList.add('open'); document.body.style.overflow='hidden';
+  };
+})();
+
 /* ── init ──────────────────────────────────────────────────────────────── */
-initScene(document.getElementById('bg'));
+const heroVideo = document.getElementById('heroVideo');
+// Muted+inline autoplay is usually allowed, but some engines still gate it behind
+// a gesture. Try immediately, then retry on the first interaction of any kind.
+function kickVideo() { heroVideo.play().catch(() => {}); }
+kickVideo();
+['pointerdown','keydown','touchstart','click'].forEach(ev =>
+  addEventListener(ev, kickVideo, { once:false, passive:true }));
+heroVideo.addEventListener('canplay', kickVideo);
+
+initScene(document.getElementById('bg'), heroVideo);
 initGame(document.getElementById('game'));
+initGallery(document.getElementById('galleryCanvas'), SHOTS, s => window.__openShot(s));
 boot();
