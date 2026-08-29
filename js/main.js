@@ -1,4 +1,4 @@
-import { initScene } from './scene.js';
+import { initSpace } from './space.js';
 import { initVoxel } from './voxel.js';
 import { initGallery } from './gallery.js';
 
@@ -247,7 +247,7 @@ kickVideo();
   addEventListener(ev, kickVideo, { once:false, passive:true }));
 heroVideo.addEventListener('canplay', kickVideo);
 
-initScene(document.getElementById('bg'), heroVideo);
+initSpace(document.getElementById('bg'));
 initVoxel(document.getElementById('worldCanvas'), openBuild);
 initGallery(document.getElementById('galleryCanvas'), SHOTS, s => window.__openShot(s));
 boot();

@@ -13,7 +13,7 @@ body{
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 
 /* ── cursor ── */
-.cursor{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;mix-blend-mode:normal}
+.cursor{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;mix-blend-mode:difference}
 .cursor-dot{position:absolute;width:6px;height:6px;border-radius:50%;background:#12141a;transform:translate(-50%,-50%)}
 .cursor-ring{position:absolute;width:34px;height:34px;border:1px solid rgba(18,20,26,.45);border-radius:50%;
   transform:translate(-50%,-50%);transition:width .25s var(--ease),height .25s var(--ease),opacity .25s}
@@ -295,3 +295,54 @@ main{position:relative;z-index:2}
 .world-card p{font-size:14.5px;color:var(--ink-dim);line-height:1.6}
 .world-foot{margin-top:20px;font-size:13.5px;color:var(--ink-faint)}
 @media(max-width:640px){.world{aspect-ratio:4/5}.world-card{width:100%;padding:28px 22px}}
+
+/* ── credentials ──────────────────────────────────────────────────────── */
+.cred-grid{display:grid;grid-template-columns:1fr 1.35fr;gap:clamp(28px,5vw,72px)}
+@media(max-width:860px){.cred-grid{grid-template-columns:1fr}}
+.cred-col h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;color:var(--ink-faint);
+  text-transform:uppercase;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.cred{padding:18px 0;border-bottom:1px solid var(--line)}
+.cred:last-child{border-bottom:0}
+.cred-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:5px}
+.cred-top b{font-size:15.5px;font-weight:600;color:var(--ink);line-height:1.35}
+.cred-top span{font-family:var(--mono);font-size:11px;color:var(--ink-faint);white-space:nowrap}
+.cred-org{font-family:var(--mono);font-size:12px;color:var(--cy);margin-bottom:7px}
+.cred-note{font-size:13.5px;color:var(--ink-dim);line-height:1.55}
+.cred-tag{display:inline-block;margin-top:11px;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+  color:var(--am);border:1px solid rgba(168,98,26,.32);border-radius:5px;padding:4px 9px}
+.cred-verify{display:inline-block;margin-top:9px;font-family:var(--mono);font-size:11.5px;color:var(--ink);
+  border-bottom:1px solid var(--cy);text-decoration:none}
+
+/* ── cinematic hero: dark orbital opening resolving into the light body ── */
+.hero{color:#f2f4f8}
+.hero::before{background:radial-gradient(120% 85% at 20% 42%,rgba(3,4,10,.88) 0%,rgba(3,4,10,.55) 42%,rgba(3,4,10,0) 76%)!important}
+.hero-title{color:#fff;text-shadow:0 2px 40px rgba(0,0,0,.55)}
+.hero-sub{color:#c3cad8}
+.hero-sub em{color:#fff;border-bottom-color:#5fe3c8}
+.hero-tag{color:#e8edf5!important;background:rgba(255,255,255,.09)!important;
+  border-color:rgba(160,220,255,.34)!important;box-shadow:0 0 30px rgba(60,140,255,.18)!important}
+.pulse{background:#5fe3c8;box-shadow:0 0 0 0 rgba(95,227,200,.7)}
+.stat b{color:#5fe3c8}
+.stat span{color:#93a0b5}
+.hero .btn-primary{background:#f2f4f8;color:#0a0d14}
+.hero .btn-primary:hover{box-shadow:0 12px 40px rgba(120,190,255,.30)}
+.hero .btn-ghost{border-color:rgba(255,255,255,.28);color:#eef2f8}
+.hero .btn-ghost:hover{border-color:#5fe3c8;color:#5fe3c8}
+.scroll-hint{color:#7c8798}
+.scroll-hint span{background:#42505f}
+.nav{color:#e6ecf4}
+.nav-logo{color:#fff}
+.nav-links a{color:#aab6c6}
+.nav-links a:hover{color:#fff}
+.nav.stuck .nav-logo{color:var(--ink)}
+.nav.stuck .nav-links a{color:var(--ink-dim)}
+.nav.stuck .nav-links a:hover{color:var(--ink)}
+.hero .cursor-dot{background:#fff}
+
+/* the horizon: space fades to paper right at the fold */
+.hero::after{content:'';position:absolute;left:0;right:0;bottom:0;height:26vh;pointer-events:none;
+  background:linear-gradient(180deg,rgba(217,217,214,0) 0%,rgba(217,217,214,.55) 55%,var(--bg) 100%)}
+
+/* below the fold everything is opaque paper — the orbit stays in the hero */
+.section::before{background:var(--bg)!important}
+.marquee{background:var(--bg)}
