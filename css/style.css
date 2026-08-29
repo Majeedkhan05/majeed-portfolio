@@ -45,7 +45,8 @@ body{
 .nav-logo{font-family:var(--mono);font-weight:700;letter-spacing:.16em;color:var(--ink);text-decoration:none;font-size:15px}
 .blink{animation:blink 1.1s steps(2) infinite;color:var(--cy)}
 @keyframes blink{50%{opacity:0}}
-.nav-links{display:flex;gap:clamp(16px,3vw,38px)}
+.nav-links{display:flex;gap:clamp(14px,2.4vw,34px)}
+.nav-logo{margin-right:clamp(12px,3vw,40px)}
 .nav-links a{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--ink-dim);text-decoration:none;
   position:relative;transition:color .3s}
 .nav-links a::after{content:'';position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--cy);transition:width .35s var(--ease)}

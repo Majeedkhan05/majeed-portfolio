@@ -54,7 +54,32 @@ function reveal() {
     setTimeout(() => el.classList.add('in'), i * 110));
   document.querySelectorAll('.hero-title .line').forEach((el, i) =>
     setTimeout(() => el.classList.add('in'), 120 + i * 110));
+  document.querySelectorAll('[data-scramble]').forEach((el, i) =>
+    setTimeout(() => scramble(el), 380 + i * 220));
   countUp();
+}
+
+// Decode-in: each glyph churns through noise, then locks left-to-right.
+// Spaces are never scrambled, so the word shape holds while it resolves.
+const GLYPHS = '\u2588\u2593\u2592\u2591/\\<>*#=+-_01';
+function scramble(el) {
+  const final = el.dataset.text || (el.dataset.text = el.textContent);
+  const N = final.length;
+  let frame = 0;
+  const lock = [...final].map((_, i) => 6 + i * 2.6 + Math.random() * 7);
+  (function step() {
+    let out = '', done = 0;
+    for (let i = 0; i < N; i++) {
+      const ch = final[i];
+      if (ch === ' ') { out += ' '; done++; continue; }
+      if (frame >= lock[i]) { out += ch; done++; }
+      else out += GLYPHS[(Math.random() * GLYPHS.length) | 0];
+    }
+    el.textContent = out;
+    frame++;
+    if (done < N) requestAnimationFrame(step);
+    else el.textContent = final;
+  })();
 }
 
 const io = new IntersectionObserver(es => {
