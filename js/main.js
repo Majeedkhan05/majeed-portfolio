@@ -237,6 +237,32 @@ function openBuild(b) {
 document.getElementById('worldClose').addEventListener('click',
   () => document.getElementById('worldCard').classList.remove('open'));
 
+/* ── connect block ─────────────────────────────────────────────────────── */
+(function connect(){
+  const EMAIL = 'majeedkhan2005.cc@gmail.com';
+  const toast = document.getElementById('toast');
+  const say = m => { toast.textContent = m; toast.classList.add('show');
+                     setTimeout(() => toast.classList.remove('show'), 2400); };
+
+  document.getElementById('copyMail')?.addEventListener('click', () => {
+    navigator.clipboard?.writeText(EMAIL)
+      .then(() => say('Email copied \u2713'))
+      .catch(() => say(EMAIL));
+  });
+
+  // No backend, no third-party form service: compose a mailto the visitor sends
+  // themselves. Nothing is transmitted anywhere until they hit send.
+  document.getElementById('msgForm')?.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('mName').value.trim();
+    const subj = document.getElementById('mSubject').value.trim() || 'Hello from your site';
+    const body = document.getElementById('mBody').value.trim();
+    const text = `${body}\n\n\u2014 ${name}`;
+    location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(text)}`;
+    say('Opening your mail app\u2026');
+  });
+})();
+
 /* ── init ──────────────────────────────────────────────────────────────── */
 const heroVideo = document.getElementById('heroVideo');
 // Muted+inline autoplay is usually allowed, but some engines still gate it behind
