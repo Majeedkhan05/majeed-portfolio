@@ -169,7 +169,7 @@ setInterval(() => {
     { label:'Email me',              hint:'mailto', run:() => location.href = 'mailto:majeedkhan2005.cc@gmail.com' },
     { label:'Copy email address',    hint:'copy',   run:() => navigator.clipboard?.writeText('majeedkhan2005.cc@gmail.com').then(() => say('Email copied ✓')) },
     { label:'GitHub — Majeedkhan05', hint:'↗',      run:() => open('https://github.com/Majeedkhan05','_blank') },
-    { label:'LinkedIn',              hint:'↗',      run:() => open('https://linkedin.com/in/majeed-khan','_blank') },
+    { label:'LinkedIn',              hint:'↗',      run:() => open('https://www.linkedin.com/in/majeed-khan-75ba72311/','_blank') },
     { label:'True North repo',       hint:'↗',      run:() => open('https://github.com/Majeedkhan05/true-north','_blank') },
     { label:'Indus Valley AI repo',  hint:'↗',      run:() => open('https://github.com/Majeedkhan05/indus-valley-ai','_blank') },
     { label:'Replay boot sequence',  hint:'sudo',   run:() => location.reload() },
